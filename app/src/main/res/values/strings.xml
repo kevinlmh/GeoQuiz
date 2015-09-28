@@ -1,9 +1,19 @@
 <resources>
     <string name="app_name">GeoQuiz</string>
-    <string name="question_text">Shanghai is the capital of China.</string>
+
+    <string name="question_antarctic">The Antarctic Circle is located south of the equator.</string>
+    <string name="question_states">There are 50 states in the contiguous United States.</string>
+    <string name="question_tropic">The Tropic of Cancer is located in the northern hemisphere.</string>
+    <string name="question_lake">The largest lake in the world is the Caspian Sea.</string>
+    <string name="question_iberian">Spain and Portugal are found on the Iberian Peninsula in Europe. </string>
+
     <string name="true_button">True</string>
     <string name="false_button">False</string>
+    <string name="prev_button">Prev</string>
+    <string name="next_button">Next</string>
+
     <string name="correct_toast">Correct!</string>
     <string name="incorect_toast">Incorrect!</string>
+
     <string name="action_settings">Settings</string>
 </resources>
