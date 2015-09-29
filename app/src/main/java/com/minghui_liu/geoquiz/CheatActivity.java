@@ -14,14 +14,13 @@ import android.widget.TextView;
 public class CheatActivity extends AppCompatActivity {
     private static final String EXTRA_ANSWER_IS_TRUE = "com.minghui_liu.geoquiz.answer_is_true";
     private static final String EXTRA_ANSWER_SHOWN = "com.minghui_liu.com.geoquiz.answer_shown";
+    private static final String KEY_ANSWER_SHOWN = "answer_shown";
 
     private boolean mAnswerIsTrue;
+    private boolean mAnswerShown = false;
+
     private TextView mAnswerTextView;
     private Button mShowAnswer;
-
-
-    public CheatActivity() {
-    }
 
     public static Intent newIntent(Context packageContext, boolean answerIsTrue) {
         Intent i = new Intent(packageContext, CheatActivity.class);
@@ -31,6 +30,12 @@ public class CheatActivity extends AppCompatActivity {
 
     public static boolean wasAnswerShown(Intent result) {
         return result.getBooleanExtra(EXTRA_ANSWER_SHOWN, false);
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putBoolean(KEY_ANSWER_SHOWN, mAnswerShown);
     }
 
     @Override
@@ -46,18 +51,25 @@ public class CheatActivity extends AppCompatActivity {
         mShowAnswer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (mAnswerIsTrue)
-                    mAnswerTextView.setText(R.string.true_button);
-                else
-                    mAnswerTextView.setText(R.string.false_button);
-                setAnswerShownResult(true);
+                mAnswerTextView.setText(mAnswerIsTrue ? R.string.true_button : R.string.false_button);
+                mAnswerShown = true;
+                setAnswerShownResult();
             }
         });
+
+        if (savedInstanceState != null) {
+            mAnswerShown = savedInstanceState.getBoolean(KEY_ANSWER_SHOWN, false);
+            if (mAnswerShown)
+                mAnswerTextView.setText(mAnswerIsTrue ? R.string.true_button : R.string.false_button);
+        }
+
+        setAnswerShownResult();
+
     }
 
-    private void setAnswerShownResult(boolean isAnswerShown) {
+    private void setAnswerShownResult() {
         Intent data = new Intent();
-        data.putExtra(EXTRA_ANSWER_SHOWN, isAnswerShown);
+        data.putExtra(EXTRA_ANSWER_SHOWN, mAnswerShown);
         setResult(RESULT_OK, data);
     }
 }
