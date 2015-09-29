@@ -5,7 +5,7 @@ package com.minghui_liu.geoquiz;
  */
 public class TrueFalse {
     private int mQuestion;
-    private boolean mTrueQuestion;
+    private boolean mAnswerTrue;
 
     public int getQuestion() {
         return mQuestion;
@@ -15,16 +15,16 @@ public class TrueFalse {
         mQuestion = question;
     }
 
-    public boolean isTrueQuestion() {
-        return mTrueQuestion;
+    public boolean isAnswerTrue() {
+        return mAnswerTrue;
     }
 
-    public void setTrueQuestion(boolean trueQuestion) {
-        mTrueQuestion = trueQuestion;
+    public void setAnswerTrue(boolean answerTrue) {
+        mAnswerTrue = answerTrue;
     }
 
-    public TrueFalse(int question, boolean trueQuestion) {
+    public TrueFalse(int question, boolean answerTrue) {
         mQuestion = question;
-        mTrueQuestion = trueQuestion;
+        mAnswerTrue = answerTrue;
     }
 }
